@@ -3,16 +3,16 @@ import 'dart:io';
 import 'package:device_packages_platform_interface/device_packages_platform_interface.dart';
 
 export 'package:device_packages_platform_interface/device_packages_platform_interface.dart'
-    show PackageInfo, PackageEvent, PackageAction;
-export 'package:device_packages_platform_interface/device_packages_platform_interface.dart'
     show DevicePackagesPlatformInterface;
+export 'package:device_packages_platform_interface/device_packages_platform_interface.dart'
+    show PackageAction, PackageEvent, PackageInfo;
 export 'package:device_packages_platform_interface/device_packages_platform_interface_method_channel.dart'
     show
         InvalidInstallerException,
         MissingPermissionToRequestInstallPackageError,
-        UnsuccessfulPackageInstallRequestException,
+        PackageIsNotOpenableException,
         PackageNotFoundException,
-        PackageIsNotOpenableException;
+        UnsuccessfulPackageInstallRequestException;
 
 class DevicePackages {
   /// Returns all packages from the device, note that this may cause several

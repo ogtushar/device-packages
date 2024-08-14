@@ -1,3 +1,5 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
@@ -127,6 +129,41 @@ class PackageInfo {
 
   /// Whether or not this package can be opened.
   final bool? isOpenable;
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      if (versionName != null) 'versionName': versionName,
+      if (length != null) 'length': length,
+      if (id != null) 'id': id,
+      if (name != null) 'name': name,
+      // if (icon != null) 'icon': base64.encode(icon!),
+      if (installerPath != null) 'installerPath': installerPath,
+      if (isSystemPackage != null) 'isSystemPackage': isSystemPackage,
+      if (isOpenable != null) 'isOpenable': isOpenable,
+    };
+  }
+
+  factory PackageInfo.fromMap(Map<String, dynamic> map) {
+    return PackageInfo(
+      versionName:
+          map['versionName'] != null ? map['versionName'] as String : null,
+      length: map['length'] != null ? map['length'] as int : null,
+      id: map['id'] != null ? map['id'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
+      // icon: map['icon'] != null ? base64.decode(map['icon'] as String) : null,
+      installerPath:
+          map['installerPath'] != null ? map['installerPath'] as String : null,
+      isSystemPackage: map['isSystemPackage'] != null
+          ? map['isSystemPackage'] as bool
+          : null,
+      isOpenable: map['isOpenable'] != null ? map['isOpenable'] as bool : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory PackageInfo.fromJson(String source) =>
+      PackageInfo.fromMap(json.decode(source) as Map<String, dynamic>);
 }
 
 class PackageEvent {
